@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tape Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="head">
+    <h1>Tape Calculator</h1>
+    <p class="hint">Keys <kbd>0–9</kbd> <kbd>+</kbd> <kbd>-</kbd> <kbd>*</kbd> <kbd>/</kbd> <kbd>^</kbd> <kbd>%</kbd> <kbd>( )</kbd> · <kbd>Enter</kbd> equals · <kbd>Backspace</kbd> · <kbd>Esc</kbd> clears</p>
+  </header>
+
+  <div class="app">
+    <section class="calc" aria-label="Calculator">
+      <div class="screen" id="screen">
+        <div class="prev" id="prev"></div>
+        <div class="expr" id="expr">0</div>
+        <div class="result" id="result" aria-live="polite"></div>
+      </div>
+
+      <div class="keys" id="keys">
+        <button class="fn" data-k="C" aria-label="All clear">AC</button>
+        <button class="fn" data-k="(" aria-label="Open parenthesis">(</button>
+        <button class="fn" data-k=")" aria-label="Close parenthesis">)</button>
+        <button class="op" data-k="÷" aria-label="Divide">÷</button>
+
+        <button data-k="7">7</button>
+        <button data-k="8">8</button>
+        <button data-k="9">9</button>
+        <button class="op" data-k="×" aria-label="Multiply">×</button>
+
+        <button data-k="4">4</button>
+        <button data-k="5">5</button>
+        <button data-k="6">6</button>
+        <button class="op" data-k="−" aria-label="Subtract">−</button>
+
+        <button data-k="1">1</button>
+        <button data-k="2">2</button>
+        <button data-k="3">3</button>
+        <button class="op" data-k="+" aria-label="Add">+</button>
+
+        <button data-k="0">0</button>
+        <button data-k="." aria-label="Decimal point">.</button>
+        <button class="fn" data-k="%" aria-label="Percent">%</button>
+        <button class="op" data-k="^" aria-label="Power">^</button>
+
+        <button class="fn" data-k="B" aria-label="Backspace">⌫</button>
+        <button class="eq" data-k="=" aria-label="Equals">=</button>
+      </div>
+
+      <p class="order">
+        <span>Evaluated first to last:</span>
+        <ol aria-label="Operator precedence, highest first">
+          <li>( )</li><li class="arrow" aria-hidden="true" style="background:none;padding:0">→</li>
+          <li>%</li><li class="arrow" aria-hidden="true" style="background:none;padding:0">→</li>
+          <li>^</li><li class="arrow" aria-hidden="true" style="background:none;padding:0">→</li>
+          <li>× ÷</li><li class="arrow" aria-hidden="true" style="background:none;padding:0">→</li>
+          <li>+ −</li>
+        </ol>
+      </p>
+    </section>
+
+    <aside class="tape" aria-label="Calculation history">
+      <div class="tape-head">
+        <h2>Tape</h2>
+        <button class="link" id="clearTape" hidden>Clear tape</button>
+      </div>
+      <p class="empty" id="empty">Press = and each calculation is printed here. Select one to load it back for editing.</p>
+      <ul id="tape"></ul>
+      <button class="link copy" id="copy">Copy result</button>
+      <p class="toast" id="toast" role="status"></p>
+    </aside>
+  </div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
